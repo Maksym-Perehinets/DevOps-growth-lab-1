@@ -1,0 +1,16 @@
+# Exclude state files if present 
+*.tfstate
+*.tfstate.*
+
+# Exclude variables file 
+*.tfvars
+
+# Exclude local .terraform directories
+**/.terraform/*
+
+# Exclude override files becouse ususally used localy
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+ 
