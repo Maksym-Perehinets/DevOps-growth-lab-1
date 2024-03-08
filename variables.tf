@@ -1,4 +1,4 @@
-variable location {
+variable "location" {
   type        = string
   default     = "East US"
   description = "Location where all our resources are located"
@@ -12,7 +12,7 @@ variable location {
 # variable back_end_StorageAccount {
 #   type        = string
 #   description = "Storage account where our backen tfstate file is stored"
-  
+
 #   validation {
 #     condition     = length(var.back_end_StorageAccount) > 3 && length(var.back_end_StorageAccount) <= 24
 #     error_message = "Valid Storage account name must be longer then 3 symbols and shorter than 24"
