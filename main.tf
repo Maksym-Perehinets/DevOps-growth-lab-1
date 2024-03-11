@@ -31,17 +31,17 @@ resource "azurerm_subnet" "production" {
   delegation {
     name = "allow-web-app"
     service_delegation {
-      name = "Microsoft.Web/serverFarms"
-      actions = [ "Microsoft.Network/virtualNetworks/subnets/action" ]
+      name    = "Microsoft.Web/serverFarms"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
     }
   }
 }
 
 resource "azurerm_subnet" "production-db" {
-  name                 = "tf-production-db-subnet"
-  resource_group_name  = azurerm_resource_group.BeStrong-rg.name
-  virtual_network_name = azurerm_virtual_network.production.name
-  address_prefixes     = ["10.10.2.0/24"]
+  name                                      = "tf-production-db-subnet"
+  resource_group_name                       = azurerm_resource_group.BeStrong-rg.name
+  virtual_network_name                      = azurerm_virtual_network.production.name
+  address_prefixes                          = ["10.10.2.0/24"]
   private_endpoint_network_policies_enabled = true
 }
 
@@ -151,7 +151,6 @@ resource "azurerm_container_registry" "acr-default" {
   resource_group_name = azurerm_resource_group.BeStrong-rg.name
   location            = azurerm_resource_group.BeStrong-rg.location
   sku                 = "Basic"
-  admin_enabled       = true
 }
 
 # Assign roles to app service to be able to pull and push images from ACR
@@ -162,7 +161,7 @@ resource "azurerm_role_assignment" "app-service-PullPush" {
 }
 
 # MS sql db creation
-  # Server creation
+# Server creation
 resource "azurerm_mssql_server" "mssql-server" {
   name                = "tf-mssql-server-${random_id.tf-RandomPrefix.hex}"
   resource_group_name = azurerm_resource_group.BeStrong-rg.name
@@ -172,7 +171,7 @@ resource "azurerm_mssql_server" "mssql-server" {
   administrator_login          = var.MSSQL-AdministratorLogin
   administrator_login_password = var.MSSQL-AdministratorPassword
 }
-  # DB creation
+# DB creation
 resource "azurerm_mssql_database" "db" {
   name      = "tf-mssql-db"
   server_id = azurerm_mssql_server.mssql-server.id
