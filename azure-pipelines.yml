@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- None
 
 pool:
   vmImage: ubuntu-latest
@@ -20,7 +20,8 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    backendAzureRmKey: 'BeStrong'
+    backendServiceArm: 'BeStrong'
     backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
     backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
     backendAzureRmContainerName: 'tf-tfstate-for-production'
+    backendAzureRmKey: 'prod.tfstate'
