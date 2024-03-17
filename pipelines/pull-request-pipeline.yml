@@ -1,15 +1,5 @@
-trigger:
-  batch: true
-  branches:
-    include:
-    - master
-  paths:
-    exclude:
-      - README.md
-      - pipelines
-
 stages:
-  - stage: TerraformInit
+  - stage: TerraformInitValidateApply
     displayName: Terraform init and validate
     pool:
       vmImage: ubuntu-latest
