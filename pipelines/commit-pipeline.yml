@@ -42,3 +42,4 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'plan'
+            environmentServiceNameAzureRM: 'BeStrong'
