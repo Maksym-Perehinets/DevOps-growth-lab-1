@@ -1,3 +1,4 @@
+#local 
 locals {
   location = replace(lower(var.location), " ", "-")
 }
