@@ -1,5 +1,3 @@
-Here's a sample README.md file for your GitHub repository with the Terraform script:
-
 ---
 
 # Azure Resources Deployment using Terraform
