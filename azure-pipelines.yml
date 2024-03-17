@@ -10,6 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
+- task: TerraformInstaller@1
+  displayName: "Latest Version of terraform installation"
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
+    backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
+    backendAzureRmContainerName: 'tf-tfstate-for-production'
