@@ -3,6 +3,10 @@ trigger:
   branches:
     include:
     - main
+  paths:
+    exclude:
+      - README.md
+      - pipelines
 
 pool:
   vmImage: ubuntu-latest
