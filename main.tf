@@ -1,3 +1,6 @@
+locals {
+  location = replace(lower(var.location), " ", "-")
+}
 # Client info 
 data "azurerm_client_config" "current" {}
 
@@ -163,7 +166,7 @@ resource "azurerm_role_assignment" "app-service-PullPush" {
 # MS sql db creation
 # Server creation
 resource "azurerm_mssql_server" "mssql-server" {
-  name                = "tf-mssql-server-${random_id.tf-RandomPrefix.hex}"
+  name                = "mssql-server-prod-${local.location}-${random_id.tf-RandomPrefix.hex}"
   resource_group_name = azurerm_resource_group.BeStrong-rg.name
   location            = azurerm_resource_group.BeStrong-rg.location
   version             = "12.0"
