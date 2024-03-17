@@ -41,9 +41,9 @@ stages:
           displayName: terraform plan
           inputs:
             provider: 'azurerm'
-            command: 'plan'
+            command: 'apply'
             environmentServiceNameAzureRM: 'BeStrong'
-            commandOptions: '-var="location=$(location)"\
+            commandOptions: '-auto-approve \
+                            -var="location=$(location)"\
                             -var="MSSQL-AdministratorLogin=$(MSSQL-AdministratorLogin)"\
                             -var="MSSQL-AdministratorPassword=$(MSSQL-AdministratorPassword)"'
-            
