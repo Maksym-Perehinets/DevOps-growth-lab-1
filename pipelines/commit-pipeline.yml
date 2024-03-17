@@ -35,6 +35,7 @@ stages:
             backendAzureRmKey: 'prod.tfstate'
     # Validate terraform configuration
     - job: TerraformValidate
+      dependsOn: TerraformInstallSetUp
       displayName: Validate terraform configuration
       steps:
         - task: TerraformTaskV4@4
