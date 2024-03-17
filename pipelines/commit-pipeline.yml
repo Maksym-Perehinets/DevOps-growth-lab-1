@@ -38,7 +38,7 @@ stages:
             provider: 'azurerm'
             command: 'validate'
         - task: TerraformTaskV4@4
-          displayName: terraform plan
+          displayName: terraform apply
           inputs:
             provider: 'azurerm'
             command: 'apply'
