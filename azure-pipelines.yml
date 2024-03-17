@@ -9,19 +9,45 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
+stages:
+  - stage: TerraformInit
+    displayName: Terraform init
+    jobs:
+    # Install latest terraform on agent
+    - job: TerraformInstallSetUp 
+      displayName: Install terraform latest and terrafrom init
+      steps:
+        - task: TerraformInstaller@1
+          displayName: "Latest Version of terraform installation"
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTaskV4@4
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'BeStrong'
+            backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
+            backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
+            backendAzureRmContainerName: 'tf-tfstate-for-production'
+            backendAzureRmKey: 'prod.tfstate'
 
-- task: TerraformInstaller@1
-  displayName: "Latest Version of terraform installation"
-  inputs:
-    terraformVersion: 'latest'
 
-- task: TerraformTaskV4@4
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    backendServiceArm: 'BeStrong'
-    backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
-    backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
-    backendAzureRmContainerName: 'tf-tfstate-for-production'
-    backendAzureRmKey: 'prod.tfstate'
+
+
+
+# steps:
+
+# - task: TerraformInstaller@1
+#   displayName: "Latest Version of terraform installation"
+#   inputs:
+#     terraformVersion: 'latest'
+
+# - task: TerraformTaskV4@4
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'init'
+#     backendServiceArm: 'BeStrong'
+#     backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
+#     backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
+#     backendAzureRmContainerName: 'tf-tfstate-for-production'
+#     backendAzureRmKey: 'prod.tfstate'
