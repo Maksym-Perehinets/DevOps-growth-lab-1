@@ -32,13 +32,13 @@ stages:
             backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
             backendAzureRmContainerName: 'tf-tfstate-for-production'
             backendAzureRmKey: 'prod.tfstate'
-    # Validate terraform configuration
-    - job: TerraformValidate
-      dependsOn: TerraformInstallSetUp
-      displayName: Validate terraform configuration
-      steps:
         - task: TerraformTaskV4@4
           displayName: terraform validate
           inputs:
             provider: 'azurerm'
             command: 'validate'
+        - task: TerraformTaskV4@4
+          displayName: terraform plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
