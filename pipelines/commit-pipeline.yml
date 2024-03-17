@@ -8,12 +8,11 @@ trigger:
       - README.md
       - pipelines
 
-pool:
-  vmImage: ubuntu-latest
-
 stages:
   - stage: TerraformInit
     displayName: Terraform init and validate
+    pool:
+      vmImage: ubuntu-latest
     jobs:
     # Install latest terraform on agent and run init
     - job: TerraformInstallSetUp 
