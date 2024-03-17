@@ -1,13 +1,3 @@
-trigger:
-  batch: true
-  branches:
-    include:
-    - master
-  paths:
-    exclude:
-      - README.md
-      - pipelines
-
 stages:
   - stage: TerraformInit
     displayName: Terraform init and validate
@@ -32,11 +22,13 @@ stages:
             backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
             backendAzureRmContainerName: 'tf-tfstate-for-production'
             backendAzureRmKey: 'prod.tfstate'
+        #Code validation
         - task: TerraformTaskV4@4
           displayName: terraform validate
           inputs:
             provider: 'azurerm'
             command: 'validate'
+        #Terraform apply 
         - task: TerraformTaskV4@4
           displayName: terraform apply
           inputs:
