@@ -43,3 +43,7 @@ stages:
             provider: 'azurerm'
             command: 'plan'
             environmentServiceNameAzureRM: 'BeStrong'
+            commandOptions: '-var="location=$(location)" \
+                             -var="MSSQL-AdministratorLogin=$(MSSQL-AdministratorLogin)" 
+                             -var="MSSQL-AdministratorPassword=$(MSSQL-AdministratorPassword)"'
+            
