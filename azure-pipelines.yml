@@ -13,7 +13,7 @@ stages:
   - stage: TerraformInit
     displayName: Terraform init
     jobs:
-    # Install latest terraform on agent
+    # Install latest terraform on agent and run init
     - job: TerraformInstallSetUp 
       displayName: Install terraform latest and terrafrom init
       steps:
@@ -30,6 +30,19 @@ stages:
             backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
             backendAzureRmContainerName: 'tf-tfstate-for-production'
             backendAzureRmKey: 'prod.tfstate'
+  - stage: TerraformValidate
+    dependsOn: TerraformInit
+    displayName: Terraform validate
+    jobs:
+    - job:
+      displayName: Validate Terraform configuration
+      steps:
+        - task: TerraformTaskV4@4
+          inputs:
+            provider: 'azurerm'
+            command: 'validate'
+
+
 
 
 
