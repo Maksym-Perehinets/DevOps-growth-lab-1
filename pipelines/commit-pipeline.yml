@@ -16,7 +16,7 @@ stages:
     jobs:
     # Install latest terraform on agent and run init
     - job: TerraformInstallSetUp 
-      displayName: Install terraform latest and terrafrom init
+      displayName: Install terraform latest and terrafrom init then terraform plan
       steps:
         - task: TerraformInstaller@1
           displayName: "Latest Version of terraform installation"
