@@ -17,13 +17,17 @@ pr:
       - README.md
       - pipelines
 
+pool:
+  vmImage: ubuntu-latest
+
+
+
 jobs:
-  - job: TestCommit
-    displayName: Test on commit
+  - job: PullRequest
+    displayName: Test validation and terraform plan
     condition: or(eq(variables['Build.Reason'], 'BatchedCI'), eq(variables['Build.Reason'], 'IndividualCI'))
     steps:
-      - script: echo "This is a commit event."
-        displayName: 'Echo Commit'
+      - template: pull-request-pipeline.yml
 
   - job: TestPullRequest
     displayName: Test on pull request
@@ -31,3 +35,49 @@ jobs:
     steps:
       - script: echo "This is a pull request event."
         displayName: 'Echo Pull Request'
+
+
+
+
+
+
+
+
+# stages:
+#     - stage: OnCommit
+#       displayName: Infrastructure build
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# jobs:
+#   - job: TestCommit
+#     displayName: Test on commit
+#     condition: or(eq(variables['Build.Reason'], 'BatchedCI'), eq(variables['Build.Reason'], 'IndividualCI'))
+#     steps:
+#       - script: echo "This is a commit event."
+#         displayName: 'Echo Commit'
+
+#   - job: TestPullRequest
+#     displayName: Test on pull request
+#     condition: eq(variables['Build.Reason'], 'PullRequest')
+#     steps:
+#       - script: echo "This is a pull request event."
+#         displayName: 'Echo Pull Request'
