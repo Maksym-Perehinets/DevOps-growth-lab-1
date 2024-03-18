@@ -1,44 +1,36 @@
 # This is template for commit 
 
-stages:
-  - stage: TerraformInit
-    displayName: Terraform init and validate
-    pool:
-      vmImage: ubuntu-latest
-    jobs:
-    # Install latest terraform on agent and run init
-    - job: TerraformInstallSetUp 
-      displayName: Install terraform latest and terrafrom init then terraform plan
-      steps:
-        - task: TerraformInstaller@1
-          displayName: "Latest Version of terraform installation"
-          inputs:
-            terraformVersion: 'latest'
-        - task: TerraformTaskV4@4
-          displayName: terraform init
-          inputs:
-            provider: 'azurerm'
-            command: 'init'
-            backendServiceArm: 'BeStrong'
-            backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
-            backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
-            backendAzureRmContainerName: 'tf-tfstate-for-production'
-            backendAzureRmKey: 'prod.tfstate'
-        #Code validation
-        - task: TerraformTaskV4@4
-          displayName: terraform validate
-          inputs:
-            provider: 'azurerm'
-            command: 'validate'
-        #Terraform apply 
-        - task: TerraformTaskV4@4
-          displayName: terraform apply
-          inputs:
-            provider: 'azurerm'
-            command: 'apply'
-            environmentServiceNameAzureRM: 'BeStrong'
-            commandOptions: >-
-                              -auto-approve 
-                              -var="location=$(location)"
-                              -var="MSSQL-AdministratorLogin=$(MSSQL-AdministratorLogin)"
-                              -var="MSSQL-AdministratorPassword=$(MSSQL-AdministratorPassword)"
+steps:
+  - task: TerraformInstaller@1
+    displayName: "Latest Version of terraform installation"
+    inputs:
+      terraformVersion: 'latest'
+  - task: TerraformTaskV4@4
+    displayName: terraform init
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      backendServiceArm: 'BeStrong'
+      backendAzureRmResourceGroupName: 'tf-tfstate-ResourceGroup'
+      backendAzureRmStorageAccountName: 'tfstatestac3e7d7b3d'
+      backendAzureRmContainerName: 'tf-tfstate-for-production'
+      backendAzureRmKey: 'prod.tfstate'
+  #Code validation
+  - task: TerraformTaskV4@4
+    displayName: terraform validate
+    inputs:
+      provider: 'azurerm'
+      command: 'validate'
+  #Terraform apply 
+  - task: TerraformTaskV4@4
+    displayName: terraform apply
+    inputs:
+      provider: 'azurerm'
+      command: 'apply'
+      environmentServiceNameAzureRM: 'BeStrong'
+      commandOptions: >-
+                        -auto-approve 
+                        -var="location=$(location)"
+                        -var="MSSQL-AdministratorLogin=$(MSSQL-AdministratorLogin)"
+                        -var="MSSQL-AdministratorPassword=$(MSSQL-AdministratorPassword)"
+                        
