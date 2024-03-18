@@ -1,4 +1,4 @@
-#For pull request test 2
+#For pull request test 3
 #local 
 locals {
   location = replace(lower(var.location), " ", "-")
