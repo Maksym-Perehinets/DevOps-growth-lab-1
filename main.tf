@@ -2,7 +2,7 @@
 locals {
   location = replace(lower(var.location), " ", "-")
 }
-# Client info test p
+# Client info test 
 data "azurerm_client_config" "current" {}
 
 # Resource group creation
