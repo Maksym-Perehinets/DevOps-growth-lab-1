@@ -1,15 +1,4 @@
-
-# pr:
-#   branches:
-#     include:
-#     - master
-#   paths:
-#     exclude:
-#     - README.md
-#     - pipelines
-
-
-
+# this is template for PR
 steps:
   - task: TerraformInstaller@1
     displayName: "Latest Version of terraform installation"

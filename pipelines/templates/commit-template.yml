@@ -1,13 +1,4 @@
-# trigger:
-#   batch: true
-#   branches:
-#     include:
-#     - master
-#   paths:
-#     exclude:
-#       - README.md
-#       - pipelines
-trigger: none
+# This is template for commit 
 
 stages:
   - stage: TerraformInit
