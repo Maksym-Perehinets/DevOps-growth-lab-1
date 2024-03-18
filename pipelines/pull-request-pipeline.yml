@@ -1,12 +1,12 @@
 trigger: none
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    exclude:
-    - README.md
-    - pipelines
+# pr:
+#   branches:
+#     include:
+#     - master
+#   paths:
+#     exclude:
+#     - README.md
+#     - pipelines
 
 
 stages:
