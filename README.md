@@ -2,7 +2,7 @@
 |-----------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Infrastructure rebuild      | Code validation and infrastructure deploy    | [![Build Status](https://dev.azure.com/supercomf128/BeStrong/_apis/build/status/Maksym-Perehinets.DevOps-growth-lab-1?branchName=master&stageName=Infrastructure%20rebuild&jobName=Code%20validation%20and%20infrastructure%20deploy%20(terraform%20validate%2Fapply))](https://dev.azure.com/supercomf128/BeStrong/_build/latest?definitionId=7&branchName=master) |
 | Test build                  | Code validation and dry run                 | [![Build Status](https://dev.azure.com/supercomf128/BeStrong/_apis/build/status/Maksym-Perehinets.DevOps-growth-lab-1?branchName=master&stageName=Test%20build&jobName=Code%20validation%20and%20dry%20run%20(terraform%20validate%2Fplan))](https://dev.azure.com/supercomf128/BeStrong/_build/latest?definitionId=7&branchName=master) |
-
+```markdown
 # Azure Resources Deployment using Terraform
 
 This Terraform script deploys the following Azure resources:
@@ -67,3 +67,15 @@ terraform destroy
 ```
 
 **Note**: This will destroy all resources created by this Terraform script.
+
+## CI/CD Setup using Azure DevOps
+
+Follow these steps to set up CI/CD using Azure DevOps:
+
+1. Use Trunk Based development flow for the CI/CD. Learn more about it [here](https://trunkbaseddevelopment.com/).
+2. Commit your current Terraform code into the master/main branch of your GitHub repository.
+3. Create your Azure DevOps organization. Request a free Azure agent (request to Microsoft may take 1-2 business days).
+4. Write your Azure DevOps Pipeline build flow using YAML syntax and commit it into your GitHub repository. Build and deploy from the master branch.
+5. CI/CD pipeline should include the following steps: `terraform init`, `terraform validate`, and `terraform apply`. CI/CD on PR should include the following steps: `terraform init`, `terraform validate`, and `terraform plan`.
+6. Create a pipeline in Azure DevOps from the YAML file and deploy infrastructure into Azure Cloud using Terraform in CI/CD. Use the GitHub service connection to access the repo and Azure service principal connection to grant Azure agent the necessary permissions to perform actions on Azure.
+```
