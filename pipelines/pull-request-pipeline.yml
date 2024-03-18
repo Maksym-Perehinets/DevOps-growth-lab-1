@@ -11,7 +11,7 @@ trigger: none
 
 stages:
   - stage: TerraformInitValidateApply
-    displayName: Terraform init and validate
+    displayName: Terraform infrastructure deploy
     pool:
       vmImage: ubuntu-latest
     jobs:
