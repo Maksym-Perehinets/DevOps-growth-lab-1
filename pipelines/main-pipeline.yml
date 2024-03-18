@@ -1,1 +1,33 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - README.md
+      - pipelines
 
+pr:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - README.md
+      - pipelines
+
+jobs:
+  - job: TestCommit
+    displayName: Test on commit
+    condition: eq(variables['Build.Reason'], 'IndividualCI')
+    steps:
+      - script: echo "This is a commit event."
+        displayName: 'Echo Commit'
+
+  - job: TestPullRequest
+    displayName: Test on pull request
+    condition: eq(variables['Build.Reason'], 'PullRequest')
+    steps:
+      - script: echo "This is a pull request event."
+        displayName: 'Echo Pull Request'
