@@ -72,13 +72,7 @@ terraform destroy
 
 This repository follows the Trunk Based Development flow for Continuous Integration and Continuous Deployment (CI/CD) processes. Trunk Based Development emphasizes working directly on the main branch, promoting collaboration and fast feedback loops.
 
-## Terraform Code
 
-The Terraform code for managing infrastructure is committed directly into the main branch of this GitHub repository.
-
-## Azure DevOps Organization
-
-To facilitate CI/CD pipelines, I have created an Azure DevOps organization. A free Azure agent has been requested from Microsoft (note: this process may take 1-2 business days).
 
 ## Azure DevOps Pipeline
 
@@ -100,4 +94,4 @@ For Pull Requests (PR), the CI pipeline includes additional steps:
 2. The pipeline deploys infrastructure into Azure Cloud using Terraform as part of the CI/CD process.
 3. I use GitHub service connection to access the repository and Azure service principal connection to grant the Azure agent necessary permissions for actions on Azure.
 
-Feel free to explore the code and pipeline configurations in this repository. For any questions or issues, please contact the repository owner.
+Feel free to explore the code and pipeline configurations in this repository. For any questions or issues, please contact me.
