@@ -31,3 +31,9 @@ jobs:
     steps:
       - script: echo "This is a pull request event."
         displayName: 'Echo Pull Request'
+
+  - job: Bash
+    displayName: None
+    steps:
+      - script: printenv
+
