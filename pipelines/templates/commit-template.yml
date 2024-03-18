@@ -22,15 +22,16 @@ steps:
       provider: 'azurerm'
       command: 'validate'
   #Terraform apply 
-  - task: TerraformTaskV4@4
-    displayName: terraform apply
-    inputs:
-      provider: 'azurerm'
-      command: 'apply'
-      environmentServiceNameAzureRM: 'BeStrong'
-      commandOptions: >-
-                        -auto-approve 
-                        -var="location=$(location)"
-                        -var="MSSQL-AdministratorLogin=$(MSSQL-AdministratorLogin)"
-                        -var="MSSQL-AdministratorPassword=$(MSSQL-AdministratorPassword)"
+  ####### Currently commented to avoid accidental deployment
+  # - task: TerraformTaskV4@4
+  #   displayName: terraform apply
+  #   inputs:
+  #     provider: 'azurerm'
+  #     command: 'apply'
+  #     environmentServiceNameAzureRM: 'BeStrong'
+  #     commandOptions: >-
+  #                       -auto-approve 
+  #                       -var="location=$(location)"
+  #                       -var="MSSQL-AdministratorLogin=$(MSSQL-AdministratorLogin)"
+  #                       -var="MSSQL-AdministratorPassword=$(MSSQL-AdministratorPassword)"
                         
