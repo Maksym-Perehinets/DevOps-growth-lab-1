@@ -1,5 +1,9 @@
----
+| Stage                       | Job                                          | Build Status                                                                                                                                                                                             |
+|-----------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Infrastructure rebuild      | Code validation and infrastructure deploy    | [![Build Status](https://dev.azure.com/supercomf128/BeStrong/_apis/build/status/Maksym-Perehinets.DevOps-growth-lab-1?branchName=master&stageName=Infrastructure%20rebuild&jobName=Code%20validation%20and%20infrastructure%20deploy%20(terraform%20validate%2Fapply))](https://dev.azure.com/supercomf128/BeStrong/_build/latest?definitionId=7&branchName=master) |
+| Test build                  | Code validation and dry run                 | [![Build Status](https://dev.azure.com/supercomf128/BeStrong/_apis/build/status/Maksym-Perehinets.DevOps-growth-lab-1?branchName=master&stageName=Test%20build&jobName=Code%20validation%20and%20dry%20run%20(terraform%20validate%2Fplan))](https://dev.azure.com/supercomf128/BeStrong/_build/latest?definitionId=7&branchName=master) |
 
+`
 # Azure Resources Deployment using Terraform
 
 This Terraform script deploys the following Azure resources:
