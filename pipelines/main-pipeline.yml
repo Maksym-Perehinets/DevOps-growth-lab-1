@@ -20,7 +20,7 @@ pr:
 jobs:
   - job: TestCommit
     displayName: Test on commit
-    condition: eq(variables['Build.Reason'], 'IndividualCI')
+    condition: eq(variables['Build.Reason'], 'Commit')
     steps:
       - script: echo "This is a commit event."
         displayName: 'Echo Commit'
