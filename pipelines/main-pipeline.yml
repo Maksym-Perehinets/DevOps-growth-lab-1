@@ -17,67 +17,27 @@ pr:
       - README.md
       - pipelines
 
-pool:
-  vmImage: ubuntu-latest
 
 
 
-jobs:
-  - job: PullRequest
-    displayName: Test validation and terraform plan
-    condition: or(eq(variables['Build.Reason'], 'BatchedCI'), eq(variables['Build.Reason'], 'IndividualCI'))
+stages:
+- stage: Commit
+  displayName: Infrastructure rebuild 
+  condition: or(eq(variables['Build.Reason'], 'BatchedCI'), eq(variables['Build.Reason'], 'IndividualCI'))
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: TerraformApply
+    displayName: Code validation and infrastructure deploy (terraform validate/aplly)  
     steps:
-      - template: pull-request-pipeline.yml
-
-  - job: TestPullRequest
-    displayName: Test on pull request
-    condition: eq(variables['Build.Reason'], 'PullRequest')
-    steps:
-      - script: echo "This is a pull request event."
-        displayName: 'Echo Pull Request'
-
-
-
-
-
-
-
-
-# stages:
-#     - stage: OnCommit
-#       displayName: Infrastructure build
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# jobs:
-#   - job: TestCommit
-#     displayName: Test on commit
-#     condition: or(eq(variables['Build.Reason'], 'BatchedCI'), eq(variables['Build.Reason'], 'IndividualCI'))
-#     steps:
-#       - script: echo "This is a commit event."
-#         displayName: 'Echo Commit'
-
-#   - job: TestPullRequest
-#     displayName: Test on pull request
-#     condition: eq(variables['Build.Reason'], 'PullRequest')
-#     steps:
-#       - script: echo "This is a pull request event."
-#         displayName: 'Echo Pull Request'
+      - template: templates/commit-template.yml
+- stage: PullRequest
+  displayName: Test build
+  condition: eq(variables['Build.Reason'], 'PullRequest')
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+    - job: TerraformPlan
+      displayName: Code validation and dry run (terraform validate/plan) 
+      steps:
+        - template: templates/pull-request-template.yml
