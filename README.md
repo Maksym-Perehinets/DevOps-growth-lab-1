@@ -68,13 +68,36 @@ terraform destroy
 
 **Note**: This will destroy all resources created by this Terraform script.
 
-CI/CD Setup using Azure DevOps
 
-Follow these steps to set up CI/CD using Azure DevOps:
 
-    Use Trunk Based development flow for the CI/CD. Learn more about it here.
-    Commit your current Terraform code into the master/main branch of your GitHub repository.
-    Create your Azure DevOps organization. Request a free Azure agent (request to Microsoft may take 1-2 business days).
-    Write your Azure DevOps Pipeline build flow using YAML syntax and commit it into your GitHub repository. Build and deploy from the master branch.
-    CI/CD pipeline should include the following steps: terraform init, terraform validate, and terraform apply. CI/CD on PR should include the following steps: terraform init, terraform validate, and terraform plan.
-    Create a pipeline in Azure DevOps from the YAML file and deploy infrastructure into Azure Cloud using Terraform in CI/CD. Use the GitHub service connection to access the repo and Azure service principal connection to grant Azure agent the necessary permissions to perform actions on Azure.
+This repository follows the Trunk Based Development flow for Continuous Integration and Continuous Deployment (CI/CD) processes. Trunk Based Development emphasizes working directly on the main branch, promoting collaboration and fast feedback loops.
+
+## Terraform Code
+
+The Terraform code for managing infrastructure is committed directly into the main branch of this GitHub repository.
+
+## Azure DevOps Organization
+
+To facilitate CI/CD pipelines, I have created an Azure DevOps organization. A free Azure agent has been requested from Microsoft (note: this process may take 1-2 business days).
+
+## Azure DevOps Pipeline
+
+I have implemented a CI/CD pipeline using YAML syntax and committed it to this GitHub repository. The pipeline is triggered on commits to the main branch and includes the following steps:
+
+1. Terraform init
+2. Terraform validate
+3. Terraform apply
+
+For Pull Requests (PR), the CI pipeline includes additional steps:
+
+1. Terraform init
+2. Terraform validate
+3. Terraform plan
+
+## Pipeline Setup in Azure DevOps
+
+1. Create a pipeline in Azure DevOps using the YAML file from this repository.
+2. The pipeline deploys infrastructure into Azure Cloud using Terraform as part of the CI/CD process.
+3. I use GitHub service connection to access the repository and Azure service principal connection to grant the Azure agent necessary permissions for actions on Azure.
+
+Feel free to explore the code and pipeline configurations in this repository. For any questions or issues, please contact the repository owner.
